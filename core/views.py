@@ -73,5 +73,13 @@ def signup(request):
     else:
         return render(request, 'signup.html')
 
-def addToList(request):
+@login_required(login_url='login')
+def logout(request):
+    auth.logout(request)
+    return redirect('login')
+
+def my_list(request):
+    pass
+
+def add_to_list(request):
     pass
