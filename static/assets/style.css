@@ -22,7 +22,7 @@
 
 .modal-show {
     transform: scale(1);
-}        
+}
 
 .film-card {
     width: 200px;
@@ -38,28 +38,33 @@
 
 .dropdown {
     position: relative;
-    display: inline-block; /* This makes sure the dropdown doesn't take full width */
+    display: inline-block;
+    /* This makes sure the dropdown doesn't take full width */
 }
 
 .dropdown-content {
     position: absolute;
     background-color: #f9f9f9;
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     z-index: 1;
 }
 
 .dropdown-content a {
-    color: black; /* Change this as needed to fit your theme */
+    color: black;
+    /* Change this as needed to fit your theme */
     padding: 12px 16px;
     text-decoration: none;
-    display: block; /* This will ensure each link appears on a new line */
+    display: block;
+    /* This will ensure each link appears on a new line */
 }
 
 .dropdown-content a:hover {
-    background-color: #ddd; /* Change this as needed to fit your theme */
+    background-color: #ddd;
+    /* Change this as needed to fit your theme */
 }
 
 .dropdown:hover .dropdown-content {
-    display: block; /* Show dropdown content on hover */
+    display: block;
+    /* Show dropdown content on hover */
 }
