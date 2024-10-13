@@ -12,9 +12,11 @@ import re
 @login_required(login_url='login')
 def index(request):
     movies = Movie.objects.all()
+    featured_movie = movies[len(movies)-1]
 
     context = {
         'movies': movies,
+        'featured_movie': featured_movie,
     }
     return render(request, 'index.html', context)
 
@@ -117,4 +119,26 @@ def add_to_list(request):
     
 @login_required(login_url='login')
 def search(request):
-    return render('search.html')
+    if request.method == 'POST':
+        search_term = request.POST['search_term']
+        movies = Movie.objects.filter(title__icontains=search_term)
+
+        context = {
+            'movies': movies,
+            'search_term': search_term
+        }
+        return render(request, 'search.html', context)
+    else:
+        return redirect('/')
+    
+@login_required(login_url='login')
+def genre(request, pk):
+    movie_genre = pk
+    movies = Movie.objects.filter(genre=movie_genre)
+
+    context = {
+        'movies': movies,
+        'movie_genre': movie_genre
+    }
+
+    return render(request, 'genre.html', context)
