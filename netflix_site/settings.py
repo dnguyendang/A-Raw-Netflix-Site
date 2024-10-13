@@ -13,6 +13,8 @@ import dj_database_url
 
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+load_dotenv()  # Load environment variables from the .env file
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,12 +24,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-&86ew$u&8xj2e-&=zxjaotfx5n5o9jhof+kzm5ibg+drwwdn%9'
+# SECRET_KEY = 'django-insecure-&86ew$u&8xj2e-&=zxjaotfx5n5o9jhof+kzm5ibg+drwwdn%9'
+SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 
 # Application definition
@@ -84,7 +87,8 @@ DATABASES = {
     }
 }
 
-DATABASES["default"] = dj_database_url.parse("postgresql://root:wY8u5t7uu7w56vsbfdvinxdE9p46RboL@dpg-cs56quq3esus73aqfftg-a.oregon-postgres.render.com/netflix_clone_65qd")
+database_url = os.environ.get("DATABASE_URL")
+DATABASES["default"] = dj_database_url.parse(database_url)
 
 
 # Password validation
