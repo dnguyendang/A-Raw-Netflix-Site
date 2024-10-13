@@ -31,7 +31,6 @@ def movie(request, pk):
 
     return render(request, 'movie.html', context)
 
-
 def login(request):
     if request.method == 'POST':
         username = request.POST['username']
